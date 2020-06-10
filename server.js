@@ -60,7 +60,7 @@ const updateRole = (employeeChoices, roleChoices) => {
         const toFindRole = answer.Role.split(' ');
         const indexRole = toFindRole[0];
         console.log(indexRole);
-        const sql = `UPDATE employees SET manager_id = ${indexRole} WHERE id = ${indexNumber}`;
+        const sql = `UPDATE employees SET role_id = ${indexRole} WHERE id = ${indexNumber};`;
         const params = [];
         connection.query(sql, params, function(err, result) {
             if(err) throw err;
