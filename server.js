@@ -265,7 +265,7 @@ const viewDepartments = () => {
 
 const viewEmployees = () => {
     console.log('Showing employees...')
-    const sql = `select employees.first_name, employees.last_name, title, salary, departments.department, managers.first_name as manager, employees.manager_id from employees 
+    const sql = `select employees.first_name, employees.last_name, title, salary, departments.department, managers.first_name as manager from employees 
     left join roles on employees.role_id = roles.id
     left join departments on roles.department_id = departments.id
     left join employees as managers on employees.manager_id = managers.id;`;
