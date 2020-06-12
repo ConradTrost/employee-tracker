@@ -262,7 +262,7 @@ const viewDepartments = () => {
 
 const viewEmployees = () => {
     console.log('Showing employees...')
-    const sql = `select managers.first_name, managers.last_name, employees.first_name, employees.last_name, title, salary, departments.department from employees 
+    const sql = `select employees.first_name, employees.last_name, title, salary, departments.department, managers.first_name as manager, employees.manager_id from employees 
     left join roles on employees.role_id = roles.id
     left join departments on roles.department_id = departments.id
     left join employees as managers on employees.manager_id = managers.id;`; // Show manager name!!!
@@ -278,5 +278,3 @@ const endConnection = () => {
     console.log('Thanks for supporting this app! Bye.')
     connection.end();
 };
-
-//UPDATE EMPLOYEE ROLE NOT WORKING EITHER
