@@ -122,6 +122,9 @@ function verify(answers) {
     else if(ans === 'Update employee role'){
         showEmployeeChoices();
     }
+    else if(ans === 'Delete employee'){
+        deleteEmployee();
+    }
     else {
         endConnection();
     }
@@ -243,7 +246,7 @@ const showMenu = () => {
             {
                 type: 'list',
                 name: 'menuChoice',
-                choices: ['View all departments', 'View all roles', 'View all employees', 'Add a department', 'Add a role', 'Add an employee', 'Update employee role', 'Quit']
+                choices: ['View all departments', 'View all roles', 'View all employees', 'Add a department', 'Add a role', 'Add an employee', 'Update employee role', 'Delete employee', 'Quit']
             }
         ])
         .then((answers) => verify(answers))
@@ -265,7 +268,7 @@ const viewEmployees = () => {
     const sql = `select employees.first_name, employees.last_name, title, salary, departments.department, managers.first_name as manager, employees.manager_id from employees 
     left join roles on employees.role_id = roles.id
     left join departments on roles.department_id = departments.id
-    left join employees as managers on employees.manager_id = managers.id;`; // Show manager name!!!
+    left join employees as managers on employees.manager_id = managers.id;`;
     const params = [];
     connection.query(sql, params, function(err, results) {
         if(err) throw err;
